@@ -27,7 +27,7 @@ from turtle import *
 #color("blue")
 
 t = float (0)
-tstep = float (0.5)    # seconds   
+tstep = float (0.25)    # seconds   
 g = float (9.81)        # fixed accel (downwards) (m/s/s)
 delx = float (2)        # uniform motion in x axis 
 y = float (0)             # y position 
@@ -45,13 +45,12 @@ while True:
             if yvel > 0:
                 print("run the simulation for 50 seconds ")
                 # main loop -- uniform motion in x and acceleration in y axis 
-                while (t<50):
+                while (t<20):
                     t=t+tstep
                     x=t*delx
                     yvel = yvel - g * tstep
                     y=y + yvel * tstep          # change in y posn = vel + time interval 
                     
                     goto(x,y)
-                    dot(2, "blue")              # draw dot at current position 
-
-print("final y position is " + str(y) + " m")
+                    dot(2, "blue")              # draw dot at current position
+                print("final y position is" + str(y) + " m")
