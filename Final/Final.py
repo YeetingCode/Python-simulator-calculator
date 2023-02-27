@@ -8,13 +8,10 @@
 
 from turtle import *
 
+
 # setup variables for time, x step, gravity, initial velocity 
-t=0
-tstep = 0.25    # seconds   
-delx = 2        # uniform motion in x axis 
-dely = 2        # fixed accel (downwards) 
-yvel = 5        # motion in y
-y=0             # y position 
+
+
 
 # draw a cliff that the ball can be thrown from 
 #penup()
@@ -26,24 +23,35 @@ y=0             # y position
 #forward(100)
 #penup()
 #goto(0,0)
+#pendown()
+#color("blue")
 
-pendown()
-color("blue")
+t = float (0)
+tstep = float (0.5)    # seconds   
+g = float (9.81)        # fixed accel (downwards) (m/s/s)
+delx = float (2)        # uniform motion in x axis 
+y = float (0)             # y position 
 
-print("run the simulation for 50 seconds ")
-# main loop -- uniform motion in x and acceleration in y axis 
-while (t<50):
-    t=t+tstep
-    x=t*delx
-    if y>=0:
-        yvel = yvel - dely * tstep     # change in y vel = accel * time interval
-    if y<0:
-        yvel = yvel + dely * tstep
-    y=y + yvel * tstep          # change in y posn = vel + time interval 
-    
-    goto(x,y)
-    dot(2, "blue")              # draw dot at current position 
+print("[1] eerste try")
+while True:
+    choice = input("kies een van de mogelijkheden: ")
+    if choice in ('1'):
+        if choice == ('1'):
+            try:
+                yvel = float(input("Enter speed: "))
+            except ValueError:
+                    print("Invalid input. Please enter a number.")
+                    continue
+            if yvel > 0:
+                print("run the simulation for 50 seconds ")
+                # main loop -- uniform motion in x and acceleration in y axis 
+                while (t<50):
+                    t=t+tstep
+                    x=t*delx
+                    yvel = yvel - g * tstep
+                    y=y + yvel * tstep          # change in y posn = vel + time interval 
+                    
+                    goto(x,y)
+                    dot(2, "blue")              # draw dot at current position 
 
 print("final y position is " + str(y) + " m")
-write(" python rules! ")
-print("that's all folks")
