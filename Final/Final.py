@@ -31,14 +31,15 @@ tstep = float (0.25)    # seconds
 g = float (9.81)        # fixed accel (downwards) (m/s/s)
 delx = float (2)        # uniform motion in x axis 
 y = float (0)             # y position 
+list_of_exits = []
 
 print("[1] eerste try")
 while True:
-    choice = input("kies een van de mogelijkheden: ")
+    choice = input("choose one of the possibilities: ")
     if choice in ('1'):
         if choice == ('1'):
             try:
-                yvel = float(input("Enter speed: "))
+                yvel = float(input("Enter speed (m/s): "))
             except ValueError:
                     print("Invalid input. Please enter a number.")
                     continue
@@ -53,4 +54,7 @@ while True:
                     
                     goto(x,y)
                     dot(2, "blue")              # draw dot at current position
-                print("final y position is" + str(y) + " m")
+                    list_of_exits.append(y)
+                print("maximum y position is",max(list_of_exits),"m")
+        
+
