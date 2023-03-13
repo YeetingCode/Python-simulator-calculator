@@ -35,7 +35,7 @@ y = float (0)             # y position
 print("[1] eerste try")
 while True:
     choice = input("kies een van de mogelijkheden: ")
-    if choice in ('1'):
+    if choice in ('1,2'):
         if choice == ('1'):
             try:
                 yvel = float(input("Enter speed: "))
@@ -54,3 +54,64 @@ while True:
                     goto(x,y)
                     dot(2, "blue")              # draw dot at current position
                 print("final y position is" + str(y) + " m")
+
+        elif choice == ('2'):
+            try:
+                yvel = float(input("Enter speed between 0 and 75: "))
+            except ValueError:
+                    print("Invalid input. Please enter a number.")
+                    continue
+            try:
+                tstep = float(input("Enter simulation speed between 0.01 and 0.1: "))
+            except ValueError:
+                    print("Invalid input. Please enter a number.")
+                    continue
+            try:
+                bounce = float(input("Enter conservation of energy (in %)"))
+            except ValueError:
+                    print("Invalid input. Please enter a number.")
+                    continue
+
+
+
+            if tstep > 0 and tstep <= 0.1 and bounce >= 0 and bounce <= 100 and yvel >=0 and yvel <= 75:
+                print("run the simulation for 50 seconds")
+                
+                penup()
+                goto(-500,0)
+                pendown()
+                begin_fill()
+                goto(500,0)
+                goto(500,-8)
+                goto(-500,-8)
+                goto(-500,0)
+                end_fill()
+                penup()
+                x = -300
+                y = 100
+                goto(x,y)
+                time.sleep(0.4)
+                
+                while (t<50):
+                    t=t+tstep
+                    x=x + delx * tstep
+                    if y>0:
+                        yvel = yvel - g * tstep
+                    else:
+                        y = 0
+                        yvel = - 0.01 * bounce * yvel
+                    y=y + yvel * tstep
+                     
+                        
+                    
+                        
+                        
+                    goto(x,y)
+                    pendown()
+                    if (t % 2) == 0:
+                        print("x = " ,x)
+                        print("y = " ,y)
+            else:
+                print("Please enter a percentage between 0 and 100")
+                print("Please enter a simulation speed between 0.01 and 0.1")
+                print("Please enter a speed between 0 and 75")
