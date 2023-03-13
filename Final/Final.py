@@ -7,7 +7,7 @@
 
 
 from turtle import *
-
+import time
 
 # setup variables for time, x step, gravity, initial velocity 
 
@@ -56,6 +56,9 @@ while True:
                 print("final y position is" + str(y) + " m")
 
         elif choice == ('2'):
+            
+            delx = 15
+
             try:
                 yvel = float(input("Enter speed between 0 and 75: "))
             except ValueError:
