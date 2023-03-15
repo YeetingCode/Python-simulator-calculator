@@ -8,6 +8,7 @@
 
 from turtle import *
 import math
+import turtle
 
 # setup variables for time, x step, gravity, initial velocity 
 
@@ -25,21 +26,17 @@ import math
 #color("blue")
 
 
-dt = float (0.25)    # seconds   
-g = float (9.81)        # fixed accel (downwards) (m/s/s)
-vx = float (2)        # uniform motion in x axis 
-y = float (0)             # y position 
-list_of_exits = []
 
-print("[1] maximum height and distance with mass, speed and angle")
-print("[3] ")
+
+
 while True:
+    print("[1] maximum height and distance with mass, speed and angle")
+    print("[3] ")
     choice = input("choose one of the possibilities: ")
     dt = float (0.25)    # seconds   
     g = float (9.81)        # fixed accel (downwards) (m/s/s)
     y = float (0)             # y position 
     list_of_exits = []
-
     if choice in ('1'):
         if choice == ('1'):
             try:
@@ -58,6 +55,7 @@ while True:
                 Fz = float(-m*g)
                 x = float(0)
                 t = float(0)
+                turtle.clearscreen()
                 penup()
                 goto(-400,0)
                 pendown()
