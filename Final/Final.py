@@ -1,16 +1,7 @@
-# a simple python example for SIS at BPS,   bill,  Jan 2017
-# using turtle graphics 
-#
-# simulate the effect of gravity on ball thrown upwards
-# using first order equations
-#
-
-
 from turtle import *
 import math
 import turtle
 
-# setup variables for time, x step, gravity, initial velocity 
 
 
 
