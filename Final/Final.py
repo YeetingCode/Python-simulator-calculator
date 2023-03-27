@@ -21,7 +21,7 @@ import turtle
 
 
 while True:
-    print("[1] maximum height and distance with mass, speed and angle, no windresistance")
+    print("[1] maximum height and distance with mass, speed and angle and without windresistance")
     print("[4] maximum height and distance with mass, speed, angle and windresistance")
     choice = input("choose one of the possibilities: ")
     dt = float (0.25)    # seconds   
@@ -74,23 +74,40 @@ while True:
                 print("maximum x position is", x, "m")
             else:
                 print("please insert positive values")
+
         if choice == ('4'):
             try:
                 v = float(input("Enter speed (m/s): "))
                 angl = float(input("Enter angle (degrees): "))
                 m = float(input("Enter mass of object(kg): "))
                 A = float(input("Enter frontal surface area(m^2): "))
+                print("[1] sphere")
+                print("[2] cube")
+                print("[3] cone")
+                vorm = float(input("Enter the shape: "))
             except ValueError:
                     print("Invalid input. Please enter a number.")
                     continue
+            if vorm == 1:
+                Cw = 0.47
+            elif vorm == 2:
+                Cw = 1.05
+            elif vorm == 3:
+                Cw = 0.45
+
             if v > 0 and angl >= 0 and m > 0 and A > 0:
                 print("run the simulation until it hits the ground")
                 #more variables
                 a = float(0)                                    #acceleration
+                ax = float(a*math.cos(math.radians(angl)))
+                ay = float(a*math.sin(math.radians(angl)))
                 vx = float(v*math.cos(math.radians(angl)))      #speed in the x axis
                 vy = float(v*math.sin(math.radians(angl)))      #speed in the y axis
                 Fz = float(-m*g)                                #force inflicted on the object by gravity
+                k = A*1,293*Cw*(1/2)
                 Fw = float(k*v*v)
+                Fwx = -Fw * math.cos(math.radians(angl))
+                Fwy = -Fw * math.sin(math.radians(angl))
                 x = float(0)                                    #the x position
                 y = float(0)                                    # y position 
                 t = float(0)                                    #the time
@@ -107,6 +124,11 @@ while True:
                 color("blue")
                 while (y >= 0):
                     #main loop
+                    v = math.sqrt(vx*vx + vy*vy)
+                    Fw = float(k*v*v)
+                    Fwx = -Fw * math.cos(math.radians(angl))
+                    Fwy = -Fw * math.sin(math.radians(angl))
+                    Fresx = m*ax - Fwx
                     x += vx*dt            #get a new x variable
                     Fresy = Fz
                     ay = Fresy / m
