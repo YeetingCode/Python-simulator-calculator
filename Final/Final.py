@@ -80,7 +80,6 @@ while True:
                 v = float(input("Enter speed (m/s): "))
                 angl = float(input("Enter angle (degrees): "))
                 m = float(input("Enter mass of object(kg): "))
-                A = float(input("Enter frontal surface area(m^2): "))
                 print("[1] sphere")
                 print("[2] cube")
                 print("[3] cone")
@@ -88,26 +87,37 @@ while True:
             except ValueError:
                     print("Invalid input. Please enter a number.")
                     continue
+
             if vorm == 1:
-                Cw = 0.47
+                Cw = float(0.47)
+                try:
+                    r = float(input("Enter the radius of the sphere: "))
+                except ValueError:
+                    print("invalid input. Please enter a number")
+                A = math.pi * r*r
             elif vorm == 2:
-                Cw = 1.05
+                Cw = float(1.05)
+                try: 
+                    r = float(input("Enter the length of one of the legs: "))
+                except ValueError:
+                    print("invalid input. Please enter a number")
+                A = r*r
             elif vorm == 3:
-                Cw = 0.45
+                Cw = float(0.45)
+                try:
+                    r = float(input("Enter the radius of the bottom circle:"))
+                except ValueError:
+                    print("invalid input. Please enter a number")
+                A = math.pi * r * r
 
             if v > 0 and angl >= 0 and m > 0 and A > 0:
                 print("run the simulation until it hits the ground")
                 #more variables
                 a = float(0)                                    #acceleration
-                ax = float(a*math.cos(math.radians(angl)))
-                ay = float(a*math.sin(math.radians(angl)))
                 vx = float(v*math.cos(math.radians(angl)))      #speed in the x axis
                 vy = float(v*math.sin(math.radians(angl)))      #speed in the y axis
                 Fz = float(-m*g)                                #force inflicted on the object by gravity
-                k = A*1,293*Cw*(1/2)
-                Fw = float(k*v*v)
-                Fwx = -Fw * math.cos(math.radians(angl))
-                Fwy = -Fw * math.sin(math.radians(angl))
+                k = float((A*1.293*Cw*0.5))
                 x = float(0)                                    #the x position
                 y = float(0)                                    # y position 
                 t = float(0)                                    #the time
@@ -126,11 +136,14 @@ while True:
                     #main loop
                     v = math.sqrt(vx*vx + vy*vy)
                     Fw = float(k*v*v)
-                    Fwx = -Fw * math.cos(math.radians(angl))
-                    Fwy = -Fw * math.sin(math.radians(angl))
-                    Fresx = m*ax - Fwx
+                    Fwx = -Fw * (vx/v)
+                    Fresx = Fwx
+                    ax = Fresx / m
+                    vx += ax*dt
                     x += vx*dt            #get a new x variable
-                    Fresy = Fz
+                    
+                    Fwy = -Fw * (vy/v)
+                    Fresy = Fz + Fwy
                     ay = Fresy / m
                     vy += ay*dt
                     y += vy * dt          # change in y posn = vel + time interval 
