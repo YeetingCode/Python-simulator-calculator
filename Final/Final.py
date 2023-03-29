@@ -91,21 +91,21 @@ while True:
             if vorm == 1:
                 Cw = float(0.47)
                 try:
-                    r = float(input("Enter the radius of the sphere: "))
+                    r = float(input("Enter the radius of the sphere (m): "))
                 except ValueError:
                     print("invalid input. Please enter a number")
                 A = math.pi * r*r
             elif vorm == 2:
                 Cw = float(1.05)
                 try: 
-                    r = float(input("Enter the length of one of the legs: "))
+                    r = float(input("Enter the length of one of the legs (m): "))
                 except ValueError:
                     print("invalid input. Please enter a number")
                 A = r*r
             elif vorm == 3:
                 Cw = float(0.45)
                 try:
-                    r = float(input("Enter the radius of the bottom circle:"))
+                    r = float(input("Enter the radius of the bottom circle (m):"))
                 except ValueError:
                     print("invalid input. Please enter a number")
                 A = math.pi * r * r
