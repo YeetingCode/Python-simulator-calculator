@@ -18,6 +18,7 @@ pygame.init()
 #goto(0,0)
 #color("blue")
 
+#this is for the 3rd option (
 class Planet:
                 AU = 149.6e6 * 1000 # deze variabele wordt in de sterrekunde gebruikt om de afstand tussen de kern an de zon en de kern van de aarde weer te geven
                 G = 6.67428e-11    # dit is een natuurkundige constante voor de gravitatiekracht die werkt tussen planeten
@@ -138,7 +139,7 @@ def main():
             
                 pygame.quit()
 
-
+#) here ends that bit
 
 while True:
 
