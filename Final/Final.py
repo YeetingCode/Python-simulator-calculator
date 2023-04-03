@@ -263,7 +263,7 @@ while True:
                     if (y == 0 and (yvel > 5 or yvel < -5)):
                         print("y = 0 on x = " ,x)
                         print("maximum y = ", max(list_of_exits))
-			list_of_exits.clear()
+                        list_of_exits.clear()
                     elif (y==0 and yvel < 5 and yvel > -5):			# if the ball has stopped moving vertically, the simulation is sped up so the user doesn't have to wait
                         t = t + 1
                     penup()
