@@ -149,7 +149,7 @@ while True:
     choice = input("choose one of the possibilities: ")
     dt = float (0.25)    # seconds   
     g = float (9.81)        # fixed accel (downwards) (m/s/s)
-
+    t = float (0)
     list_of_exits = []
     if choice in ('1','2','3','4'):
 
@@ -262,6 +262,7 @@ while True:
                     if (y == 0 and (yvel > 5 or yvel < -5)):
                         print("y = 0 on x = " ,x)
                         print("maximum y = ", max(list_of_exits))
+			list_of_exits.clear()
                     elif (y==0 and yvel < 5 and yvel > -5):
                         t = t + 1
                     penup()
