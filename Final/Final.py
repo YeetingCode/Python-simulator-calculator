@@ -107,7 +107,7 @@ while True:
 
             if tstep > 0 and tstep <= 0.1 and bounce >= 0 and bounce <= 100 and yvel >=0 and yvel <= 75:
                 print("run the simulation for 50 seconds")
-                
+                turtle.clearscreen()
                 penup()
                 goto(-500,0)
                 pendown()
@@ -139,8 +139,10 @@ while True:
                         
                     pendown()
                     goto(x,y)
+                    list_of_exits.append(y)
                     if (y == 0 and (yvel > 5 or yvel < -5)):
                         print("y = 0 on x = " ,x)
+                        print("maximum y = ", max(list_of_exits))
                     elif (y==0 and yvel < 5 and yvel > -5):
                         t = t + 1
                     penup()
