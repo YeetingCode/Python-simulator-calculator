@@ -202,48 +202,48 @@ while True:
         
 
 
-        elif choice == ('2'):
+        elif choice == ('2'):		# if the second option is chosen
             
             delx = 15
 
             try:
-                yvel = float(input("Enter speed between 0 and 75: "))
-            except ValueError:
-                    print("Invalid input. Please enter a number.")
+                yvel = float(input("Enter speed between 0 and 75: "))		# user input for the ball's speed
+            except ValueError:							# if the input is not a number it outputs an error
+                    print("Invalid input. Please enter a number.")		# asking to put in a valid number
                     continue
             try:
-                tstep = float(input("Enter simulation speed between 0.01 and 0.1: "))
-            except ValueError:
-                    print("Invalid input. Please enter a number.")
+                tstep = float(input("Enter simulation speed between 0.01 and 0.1: "))		# user input for the simulation speed
+            except ValueError:									# if the input is not a number it outputs an error
+                    print("Invalid input. Please enter a number.")				# asking to put in a valid number
                     continue
             try:
-                bounce = float(input("Enter conservation of energy (in %)"))
-            except ValueError:
-                    print("Invalid input. Please enter a number.")
+                bounce = float(input("Enter conservation of energy (in %)"))			# user input for the bounciness
+            except ValueError:									# if the input is not a number it outputs an error
+                    print("Invalid input. Please enter a number.")				# asking to put in a valid number
                     continue
 
 
 
-            if tstep > 0 and tstep <= 0.1 and bounce >= 0 and bounce <= 100 and yvel >=0 and yvel <= 75:
+            if tstep > 0 and tstep <= 0.1 and bounce >= 0 and bounce <= 100 and yvel >=0 and yvel <= 75:	# making sure that the inputted numbers are within the parameters
                 print("run the simulation for 50 seconds")
-                turtle.clearscreen()
-                penup()
-                goto(-500,0)
-                pendown()
-                begin_fill()
-                goto(500,0)
+                turtle.clearscreen()				# clearing the turtle screen from previous attempts, or creating a new turtle screen
+                penup()						# making sure the turtle isn't drawing
+                goto(-500,0)					# going to -500, 0
+                pendown()					# starting to draw
+                begin_fill()					# filling up the upcoming shape
+                goto(500,0)					
                 goto(500,-8)
                 goto(-500,-8)
                 goto(-500,0)
-                end_fill()
-                penup()
-                x = -300
+                end_fill()					# a filled rectangle has now been created
+                penup()						# stop drawing
+                x = -300					# defining the starting position for the ball
                 y = 100
-                goto(x,y)
-                time.sleep(0.4)
+                goto(x,y)					# going to the starting position
+                time.sleep(0.4)					# a tiny break to make the movement easier to follow
                 
-                while (t<50):
-                    t=t+tstep
+                while (t<50):					# continue drawing until t >= 50
+                    t=t+tstep					# setting the rules for the motion
                     x=x + delx * tstep
                     if y>0:
                         yvel = yvel - g * tstep
@@ -256,18 +256,18 @@ while True:
                         
                     
                         
-                    pendown()
-                    goto(x,y)
-                    list_of_exits.append(y)
+                    pendown()							# starting the turtle drawing
+                    goto(x,y)							# move to the next point in the motion
+                    list_of_exits.append(y)					# printing some information for the user to read
                     if (y == 0 and (yvel > 5 or yvel < -5)):
                         print("y = 0 on x = " ,x)
                         print("maximum y = ", max(list_of_exits))
 			list_of_exits.clear()
-                    elif (y==0 and yvel < 5 and yvel > -5):
+                    elif (y==0 and yvel < 5 and yvel > -5):			# if the ball has stopped moving vertically, the simulation is sped up so the user doesn't have to wait
                         t = t + 1
                     penup()
             else:
-                print("Please enter a percentage between 0 and 100")
+                print("Please enter a percentage between 0 and 100")			# if the inputted variables are not between the set parameters, the user will be asked to input them again
                 print("Please enter a simulation speed between 0.01 and 0.1")
                 print("Please enter a speed between 0 and 75")
         
