@@ -129,21 +129,21 @@ while True:
                     if y>0:
                         yvel = yvel - g * tstep
                     else:
-                        y = 0
                         yvel = - 0.01 * bounce * yvel
                     y=y + yvel * tstep
+                    if y + yvel * tstep < 0:
+                        y=0
                      
                         
                     
                         
-                        
-                    goto(x,y)
                     pendown()
-                    list_of_exits.append(y)
-                    if (t % 2) == 0:
-                        print("x = " ,x)
-                        print("y = " ,y)
-                        print("maximum y = ", max(list_of_exits))
+                    goto(x,y)
+                    if (y == 0 and (yvel > 5 or yvel < -5)):
+                        print("y = 0 on x = " ,x)
+                    elif (y==0 and yvel < 5 and yvel > -5):
+                        t = t + 1
+                    penup()
             else:
                 print("Please enter a percentage between 0 and 100")
                 print("Please enter a simulation speed between 0.01 and 0.1")
