@@ -25,6 +25,7 @@ import time
 while True:
 
     print("[1] maximum height and distance with mass, speed and angle and without windresistance")
+    print("[2] bouncing ball")
     print("[4] maximum height and distance with mass, speed, angle and windresistance")
     choice = input("choose one of the possibilities: ")
     dt = float (0.25)    # seconds   
@@ -138,9 +139,11 @@ while True:
                         
                     goto(x,y)
                     pendown()
+                    list_of_exits.append(y)
                     if (t % 2) == 0:
                         print("x = " ,x)
                         print("y = " ,y)
+                        print("maximum y = ", max(list_of_exits))
             else:
                 print("Please enter a percentage between 0 and 100")
                 print("Please enter a simulation speed between 0.01 and 0.1")
