@@ -1,6 +1,8 @@
 from turtle import *
+
 import math
 import turtle
+import time
 
 
 
@@ -21,6 +23,7 @@ import turtle
 
 
 while True:
+
     print("[1] maximum height and distance with mass, speed and angle and without windresistance")
     print("[4] maximum height and distance with mass, speed, angle and windresistance")
     choice = input("choose one of the possibilities: ")
@@ -28,7 +31,8 @@ while True:
     g = float (9.81)        # fixed accel (downwards) (m/s/s)
 
     list_of_exits = []
-    if choice in ('1','4'):
+    if choice in ('1','2','4'):
+
         if choice == ('1'):
             try:
                 v = float(input("Enter speed (m/s): "))
@@ -75,6 +79,72 @@ while True:
             else:
                 print("please insert positive values")
 
+        
+
+
+        elif choice == ('2'):
+            
+            delx = 15
+
+            try:
+                yvel = float(input("Enter speed between 0 and 75: "))
+            except ValueError:
+                    print("Invalid input. Please enter a number.")
+                    continue
+            try:
+                tstep = float(input("Enter simulation speed between 0.01 and 0.1: "))
+            except ValueError:
+                    print("Invalid input. Please enter a number.")
+                    continue
+            try:
+                bounce = float(input("Enter conservation of energy (in %)"))
+            except ValueError:
+                    print("Invalid input. Please enter a number.")
+                    continue
+
+
+
+            if tstep > 0 and tstep <= 0.1 and bounce >= 0 and bounce <= 100 and yvel >=0 and yvel <= 75:
+                print("run the simulation for 50 seconds")
+                
+                penup()
+                goto(-500,0)
+                pendown()
+                begin_fill()
+                goto(500,0)
+                goto(500,-8)
+                goto(-500,-8)
+                goto(-500,0)
+                end_fill()
+                penup()
+                x = -300
+                y = 100
+                goto(x,y)
+                time.sleep(0.4)
+                
+                while (t<50):
+                    t=t+tstep
+                    x=x + delx * tstep
+                    if y>0:
+                        yvel = yvel - g * tstep
+                    else:
+                        y = 0
+                        yvel = - 0.01 * bounce * yvel
+                    y=y + yvel * tstep
+                     
+                        
+                    
+                        
+                        
+                    goto(x,y)
+                    pendown()
+                    if (t % 2) == 0:
+                        print("x = " ,x)
+                        print("y = " ,y)
+            else:
+                print("Please enter a percentage between 0 and 100")
+                print("Please enter a simulation speed between 0.01 and 0.1")
+                print("Please enter a speed between 0 and 75")
         if choice == ('4'):
             try:
                 v = float(input("Enter speed (m/s): "))
@@ -151,6 +221,7 @@ while True:
                     
                     goto(x,y)
                     dot(2, "blue")              # draw dot at current position
+
                     list_of_exits.append(y)
                 print("maximum y position is",max(list_of_exits),"m")
                 print("maximum x position is", x, "m")
